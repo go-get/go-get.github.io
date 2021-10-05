@@ -1,5 +1,9 @@
 {
   "posts" : [
     
+    "./service-checklist.html",
+    
+    "./high-level-microservice-web-architecture.html"
+    
   ]
 }

@@ -1,1 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-05T11:19:24+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Web Development</title><subtitle>An Engineers thought book</subtitle><author><name>Sumit Asok</name></author></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-05T11:49:57+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Web Development</title><subtitle>An Engineers thought book</subtitle><author><name>Sumit Asok</name></author><entry><title type="html">Service checklist</title><link href="http://localhost:4000/service-checklist.html" rel="alternate" type="text/html" title="Service checklist" /><published>2021-07-08T01:02:20+05:30</published><updated>2021-07-08T01:02:20+05:30</updated><id>http://localhost:4000/service-checklist</id><content type="html" xml:base="http://localhost:4000/service-checklist.html">&lt;h2 id=&quot;references-between-client-and-service&quot;&gt;References between client and service&lt;/h2&gt;
+
+&lt;p&gt;Here, the client is the caller, and the service is the recipient who also provides a unique functionality over this API.&lt;/p&gt;
+
+&lt;p&gt;We will use order and payments as an example where order-service will use payment-service to manage payments.&lt;/p&gt;
+
+&lt;h3 id=&quot;functional-requirements&quot;&gt;Functional requirements:&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;An order service can attempt payment via payment service. Payment-service encapsulates nuances associated with the payment and finally return the status of payment.&lt;/li&gt;
+  &lt;li&gt;The Order-service should re-request the payment service for managing the user’s payment when the previous payment method fails.&lt;/li&gt;
+  &lt;li&gt;The order should be able to fetch the successful Payment from Payment-service.&lt;/li&gt;
+  &lt;li&gt;The order should be able to fetch all the payment attempts from the Payment-service, including the failed.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;architecture&quot;&gt;Architecture:&lt;/h3&gt;
+
+&lt;p&gt;In this scenario, Payment-service should store the payment-related information. It should be able to return Payment-data filtered on the order that it tried to service.&lt;/p&gt;
+
+&lt;p&gt;The aforementioned is a classic example of a Service needing reference to its caller.&lt;/p&gt;
+
+&lt;p&gt;The client must send some unique identifiers to the service to identify the client request later.&lt;/p&gt;
+
+&lt;p&gt;E.g, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tenant-identifier:string&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;request-type:string&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;request-identifier:string&lt;/code&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Tenant-identifier: is used to identify the client in a multi-tenant environment. (there is an authorisation step additionally using data encryption-decryption pattern)&lt;/li&gt;
+  &lt;li&gt;Request-type: is used to identify the requester within the tenant. It gives the requester flexibility to register multiple callers under a single tenant instead of creating and managing numerous tenants.&lt;/li&gt;
+  &lt;li&gt;Request-identifier: request identifier is a string as the client is open to choose his version of ID, be it integer or UUID. The requestor should convert their ID into a string and post it to the service.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The Service should generate and return&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;service-ID: an identifier unique across the deployment of the service.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;After furnishing the service request, the service should return a unique identifier to the caller.&lt;/p&gt;
+
+&lt;p&gt;The caller can request this specific service information by calling the service with the client-request-id and service-id.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GET /&amp;lt;service&amp;gt;/&amp;lt;tenantID&amp;gt;/&amp;lt;service-resource&amp;gt;/&amp;lt;client-request-type&amp;gt;/&amp;lt;client-request-id&amp;gt;/&amp;lt;service-id&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;entity-relationships&quot;&gt;Entity Relationships&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;images/image1.png&quot; alt=&quot;alt_text&quot; title=&quot;image_tooltip&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The service should not restrict the caller to be having a has_one relationship with their service. It is entirely up to the client to define how the relationship should be.&lt;/p&gt;
+
+&lt;p&gt;The client should be able to get all the Payments associated with the order using the below URL&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GET /&amp;lt;service&amp;gt;/&amp;lt;tenantID&amp;gt;/&amp;lt;service-resource&amp;gt;/&amp;lt;client-request-type&amp;gt;/&amp;lt;client-request-id&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;At the client end,&lt;/p&gt;
+
+&lt;p&gt;It has to cache all the payment IDs, and in case they have a one to one relationship, maintain the latest service-id against the order.&lt;/p&gt;
+
+&lt;p&gt;Reciprocate this functionality at the Service level by implementing the below URL.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GET /&amp;lt;service&amp;gt;/&amp;lt;tenantID&amp;gt;/&amp;lt;service-resource&amp;gt;/&amp;lt;client-request-type&amp;gt;/&amp;lt;client-request-id&amp;gt;/?**latest=true**&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;So that the client can always access which is the active service data for a resource (order)&lt;/p&gt;</content><author><name>Sumit Asok</name></author><category term="software" /><category term="architecture" /><summary type="html">References between client and service</summary></entry><entry><title type="html">High Level microservices Web Architecture using Azure PaaS solutions only.</title><link href="http://localhost:4000/high-level-microservice-web-architecture.html" rel="alternate" type="text/html" title="High Level microservices Web Architecture using Azure PaaS solutions only." /><published>2021-01-26T01:02:20+05:30</published><updated>2021-01-26T01:02:20+05:30</updated><id>http://localhost:4000/high-level-microservice-web-architecture</id><content type="html" xml:base="http://localhost:4000/high-level-microservice-web-architecture.html">&lt;p&gt;For those who want to quickly get started on developing their microservices without having to worry about the infrastructure provisioning over head, below is the easy and secure architecture.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/posts/azure-architecture/highleveldesign-ewbapplication-microservice-2021-06-1574945PM.png&quot; alt=&quot;high level microservice web architecture&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;application-gateway-waf&quot;&gt;Application Gateway (WAF)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Host&lt;/li&gt;
+  &lt;li&gt;Backend&lt;/li&gt;
+  &lt;li&gt;Listener&lt;/li&gt;
+  &lt;li&gt;Rule&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(Insert diagram here)&lt;/p&gt;
+
+&lt;h2 id=&quot;auth-termination-at-apim&quot;&gt;Auth termination at APIM&lt;/h2&gt;
+
+&lt;p&gt;How to authenticate using Auth0 on APIM.&lt;/p&gt;
+
+&lt;h2 id=&quot;app-services&quot;&gt;App Services&lt;/h2&gt;
+
+&lt;p&gt;How to connect DevOps for CI/CD.&lt;/p&gt;
+
+&lt;h2 id=&quot;storage&quot;&gt;Storage&lt;/h2&gt;
+
+&lt;h3 id=&quot;postgres&quot;&gt;Postgres&lt;/h3&gt;
+
+&lt;p&gt;Always use hosted postgres by Azure for reduced maintenance.&lt;/p&gt;
+
+&lt;h3 id=&quot;blobstorage&quot;&gt;BlobStorage&lt;/h3&gt;</content><author><name>Sumit Asok</name></author><category term="azure" /><category term="architecture" /><summary type="html">For those who want to quickly get started on developing their microservices without having to worry about the infrastructure provisioning over head, below is the easy and secure architecture.</summary></entry></feed>

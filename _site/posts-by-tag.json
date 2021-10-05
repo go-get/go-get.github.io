@@ -1,4 +1,36 @@
 
 
 [   
+      
+  {
+  "tag" : "architecture",
+  "posts" : [
+      
+      "./service-checklist.html",
+      
+      "./high-level-microservice-web-architecture.html"
+      
+    ]
+  } ,
+    
+      
+  {
+  "tag" : "azure",
+  "posts" : [
+      
+      "./high-level-microservice-web-architecture.html"
+      
+    ]
+  } ,
+    
+      
+  {
+  "tag" : "software",
+  "posts" : [
+      
+      "./service-checklist.html"
+      
+    ]
+  } 
+    
 ]
