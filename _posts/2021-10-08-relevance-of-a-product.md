@@ -1,16 +1,16 @@
-<!-- ---
+---
 layout: post
 read_time: true
 show_date: true
 title: Relevance of product in an Engineers career
 date:   2021-10-08 13:32:20 +0530
-description: points to note when creating a service
+description: An Engineers decision of choosing a project to work on has lots of significance. We will try to understand the dimensions that it impacts.
 img: posts/azure-architecture/highleveldesign-ewbapplication-microservice-2021-06-1574945PM.png
 tags: [career]
 author: Sumit Asok
 # github: sumitasok/references
 # mathjax: yes
---- -->
+---
 
 An Engineers decision of choosing a project to work on has lots of significance. We will try to understand the dimensions that it impacts.
 

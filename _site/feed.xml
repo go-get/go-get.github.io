@@ -1,33 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-08T11:51:13+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Web Development</title><subtitle>An Engineers thought book</subtitle><author><name>Sumit Asok</name></author><entry><title type="html">Relevance Of A Product</title><link href="http://localhost:4000/relevance-of-a-product.html" rel="alternate" type="text/html" title="Relevance Of A Product" /><published>2021-10-08T00:00:00+05:30</published><updated>2021-10-08T00:00:00+05:30</updated><id>http://localhost:4000/relevance-of-a-product</id><content type="html" xml:base="http://localhost:4000/relevance-of-a-product.html">&lt;!-- ---
-layout: post
-read_time: true
-show_date: true
-title: Relevance of product in an Engineers career
-date:   2021-10-08 13:32:20 +0530
-description: points to note when creating a service
-img: posts/azure-architecture/highleveldesign-ewbapplication-microservice-2021-06-1574945PM.png
-tags: [career]
-author: Sumit Asok
-# github: sumitasok/references
-# mathjax: yes
---- --&gt;
-
-&lt;p&gt;An Engineers decision of choosing a project to work on has lots of significance. We will try to understand the dimensions that it impacts.&lt;/p&gt;
-
-&lt;p&gt;It is a blessing to Software engineers that they get the opportunity to work on almost everything in the world.&lt;/p&gt;
-
-&lt;p&gt;My personal experience has touched upon  Community Engagement, the Entertainment industry, Health Care industry. Now, the Drone industry who again in this era of the 4th industrial revolution, is revolutionising by delivering insights to sectors like Agri, Industrial security, Inspection, Quality and Quantity Analysis, Feasibility study, etc. Drone solutions are topic for a different article)&lt;/p&gt;
-
-&lt;p&gt;An engineer can choose a project that builds the world or burns it.
-An Engineer can choose a project that gives more people work or takes away peoples work. We are on a seriously populated planet, and a happy population is what we should target, like Bhutan’s Gross National Happiness Index.&lt;/p&gt;
-
-&lt;p&gt;How do you choose a project?&lt;/p&gt;
-
-&lt;p&gt;One good way to narrow down your search is,&lt;/p&gt;
-
-&lt;p&gt;In Corona Lockdown in India, some services were exempted from lockdown and allowed special passes. Those services are essential.&lt;/p&gt;
-
-&lt;p&gt;Necessity exempted the drone industry from being locked up.&lt;/p&gt;</content><author><name>Sumit Asok</name></author><summary type="html"></summary></entry><entry><title type="html">Service checklist</title><link href="http://localhost:4000/service-checklist.html" rel="alternate" type="text/html" title="Service checklist" /><published>2021-07-08T01:02:20+05:30</published><updated>2021-07-08T01:02:20+05:30</updated><id>http://localhost:4000/service-checklist</id><content type="html" xml:base="http://localhost:4000/service-checklist.html">&lt;h2 id=&quot;references-between-client-and-service&quot;&gt;References between client and service&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-08T11:51:46+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Web Development</title><subtitle>An Engineers thought book</subtitle><author><name>Sumit Asok</name></author><entry><title type="html">Service checklist</title><link href="http://localhost:4000/service-checklist.html" rel="alternate" type="text/html" title="Service checklist" /><published>2021-07-08T01:02:20+05:30</published><updated>2021-07-08T01:02:20+05:30</updated><id>http://localhost:4000/service-checklist</id><content type="html" xml:base="http://localhost:4000/service-checklist.html">&lt;h2 id=&quot;references-between-client-and-service&quot;&gt;References between client and service&lt;/h2&gt;
 
 &lt;p&gt;Here, the client is the caller, and the service is the recipient who also provides a unique functionality over this API.&lt;/p&gt;
 
